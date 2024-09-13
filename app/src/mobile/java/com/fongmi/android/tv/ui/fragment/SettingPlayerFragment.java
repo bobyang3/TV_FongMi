@@ -14,17 +14,15 @@ import com.fongmi.android.tv.R;
 import com.fongmi.android.tv.Setting;
 import com.fongmi.android.tv.databinding.FragmentSettingPlayerBinding;
 import com.fongmi.android.tv.impl.BufferCallback;
-import com.fongmi.android.tv.impl.SubtitleCallback;
 import com.fongmi.android.tv.impl.UaCallback;
 import com.fongmi.android.tv.player.Players;
 import com.fongmi.android.tv.ui.base.BaseFragment;
 import com.fongmi.android.tv.ui.dialog.BufferDialog;
-import com.fongmi.android.tv.ui.dialog.SubtitleDialog;
 import com.fongmi.android.tv.ui.dialog.UaDialog;
 import com.fongmi.android.tv.utils.ResUtil;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-public class SettingPlayerFragment extends BaseFragment implements UaCallback, BufferCallback, SubtitleCallback {
+public class SettingPlayerFragment extends BaseFragment implements UaCallback, BufferCallback {
 
     private FragmentSettingPlayerBinding mBinding;
     private String[] background;
@@ -57,7 +55,6 @@ public class SettingPlayerFragment extends BaseFragment implements UaCallback, B
         mBinding.tunnelText.setText(getSwitch(Setting.isTunnel()));
         mBinding.captionText.setText(getSwitch(Setting.isCaption()));
         mBinding.bufferText.setText(String.valueOf(Setting.getBuffer()));
-        mBinding.subtitleText.setText(String.valueOf(Setting.getSubtitle()));
         mBinding.playWithOthersText.setText(getSwitch(Setting.isPlayWithOthers()));
         mBinding.danmuLoadText.setText(getSwitch(Setting.isDanmuLoad()));
         mBinding.rtspText.setText((rtsp = ResUtil.getStringArray(R.array.select_rtsp))[Setting.getRtsp()]);
@@ -84,7 +81,6 @@ public class SettingPlayerFragment extends BaseFragment implements UaCallback, B
         mBinding.render.setOnClickListener(this::setRender);
         mBinding.tunnel.setOnClickListener(this::setTunnel);
         mBinding.caption.setOnClickListener(this::setCaption);
-        mBinding.subtitle.setOnClickListener(this::onSubtitle);
         mBinding.caption.setOnLongClickListener(this::onCaption);
         mBinding.playWithOthers.setOnClickListener(this::setPlayWithOthers);
         mBinding.danmuLoad.setOnClickListener(this::setDanmuLoad);
@@ -181,15 +177,6 @@ public class SettingPlayerFragment extends BaseFragment implements UaCallback, B
     private boolean onCaption(View view) {
         if (Setting.isCaption()) startActivity(new Intent(Settings.ACTION_CAPTIONING_SETTINGS));
         return Setting.isCaption();
-    }
-
-    private void onSubtitle(View view) {
-        SubtitleDialog.create(this).show();
-    }
-
-    @Override
-    public void setSubtitle(int size) {
-        mBinding.subtitleText.setText(String.valueOf(size));
     }
 
     private void setPlayWithOthers(View view) {

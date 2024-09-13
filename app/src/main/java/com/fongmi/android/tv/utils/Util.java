@@ -68,7 +68,8 @@ public class Util {
 
     public static CharSequence getClipText() {
         ClipboardManager manager = (ClipboardManager) App.get().getSystemService(Context.CLIPBOARD_SERVICE);
-        return manager.getText();
+        if (manager.getPrimaryClip() == null || manager.getPrimaryClip().getItemCount() == 0) return "";
+        return manager.getPrimaryClip().getItemAt(0).getText();
     }
 
     public static void copy(String text) {

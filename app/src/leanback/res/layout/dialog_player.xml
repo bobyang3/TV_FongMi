@@ -20,32 +20,19 @@
             android:layout_weight="1"
             android:textColor="@color/white"
             android:textSize="16sp"
-            tools:text="選擇字幕" />
+            android:text="@string/player"
+            tools:text="選擇播放器" />
 
         <ImageView
             android:id="@+id/choose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:background="@drawable/selector_image"
             android:padding="4dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:src="@drawable/ic_action_choose"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_image"
-            android:padding="4dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:src="@drawable/ic_action_subtitle"
-            android:visibility="gone"
-            tools:visibility="visible" />
+            android:src="@drawable/ic_action_share"
+            android:visibility="visible" />
 
     </LinearLayout>
 
@@ -60,6 +47,6 @@
         android:paddingBottom="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:maxHeight="204dp"
-        tools:listitem="@layout/adapter_track" />
+        tools:listitem="@layout/adapter_player" />
 
 </LinearLayout>

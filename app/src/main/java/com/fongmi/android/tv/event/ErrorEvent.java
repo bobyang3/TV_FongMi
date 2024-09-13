@@ -69,8 +69,8 @@ public class ErrorEvent {
         return code / 1000 == 4;
     }
 
-    public boolean isFormat() {
-        return code / 1000 == 3;
+    public boolean isExo() {
+        return code / 1000 == 2 || code / 1000 == 3 || code / 1000 == 4;
     }
 
     public String getMsg() {
